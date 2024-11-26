@@ -22,6 +22,9 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 
 import "./App.css";
 import TarotDeck from "../Tarot/TarotDeck";
+import TarotSpread from "../Tarot/TarotSpread";
+import Tarot3Spread from "../Tarot/Tarot3Spread"
+import TarotHistory from "../Tarot/TarotHistory";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +33,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
+    dispatch({type: "FETCH_DECK"});
   }, [dispatch]);
 
   return (
@@ -71,6 +75,15 @@ function App() {
 
           <ProtectedRoute exact path='/tarot'>
             <TarotDeck />
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/tarot-spread'>
+          <TarotSpread />
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/tarot-3-spread'>
+            <Tarot3Spread />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/tarot-history">
+            <TarotHistory />
           </ProtectedRoute>
           
           <Route exact path="/login">
