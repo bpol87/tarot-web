@@ -6,6 +6,7 @@
     "node": ">=18.x"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^9.0.1",

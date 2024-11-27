@@ -79,9 +79,6 @@ function App() {
           <ProtectedRoute exact path='/tarot-spread'>
           <TarotSpread />
           </ProtectedRoute>
-          <ProtectedRoute exact path='/tarot-3-spread'>
-            <Tarot3Spread />
-          </ProtectedRoute>
           <ProtectedRoute exact path="/tarot-history">
             <TarotHistory />
           </ProtectedRoute>

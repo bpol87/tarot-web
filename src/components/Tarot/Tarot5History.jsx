@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
-export default function Tarot3History() {
+export default function Tarot5History() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
-  const threeHistory = useSelector((store) => store.history.threeHistory) || [];
+  const fiveHistory = useSelector((store) => store.history.fiveHistory) || [];
 
   useEffect(() => {
     setLoading(true);
-    dispatch({ type: "FETCH_THREE_HISTORY" });
+    dispatch({ type: "FETCH_FIVE_HISTORY" });
 
     const fetchComplete = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(fetchComplete);
@@ -39,16 +39,16 @@ export default function Tarot3History() {
   };
 
   const deleteSpread = (id) => {
-    dispatch({type: "DELETE_THREE_SPREAD_HISTORY", payload: id})
-  }
+    dispatch({ type: "DELETE_FIVE_SPREAD_HISTORY", payload: id });
+  };
 
   return (
     <div className="flex flex-col align-middle items-center w-11/12">
-      <h1 className="text-center text-lg font-bold mb-4">3-Spread History</h1>
+      <h1 className="text-center text-lg font-bold mb-4">5-Spread History</h1>
 
       {loading ? (
         <p className="text-center">Loading...</p>
-      ) : threeHistory.length > 0 ? (
+      ) : fiveHistory.length > 0 ? (
         <table className="table-auto w-full border-collapse">
           <thead>
             <tr className="bg-gray-200">
@@ -56,11 +56,13 @@ export default function Tarot3History() {
               <th className="text-center p-2">Card One</th>
               <th className="text-center p-2">Card Two</th>
               <th className="text-center p-2">Card Three</th>
+              <th className="text-center p-2">Card Four</th>
+              <th className="text-center p-2">Card Five</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {threeHistory.map((el, index) => (
+            {fiveHistory.map((el, index) => (
               <tr
                 key={el.spread_id}
                 className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
@@ -80,9 +82,19 @@ export default function Tarot3History() {
                   {el.card_three_name} –{" "}
                   {formatOrientation(el.card_three_orientation)}
                 </td>
+                <td className="p-2 text-center">
+                  {el.card_four_name} –{" "}
+                  {formatOrientation(el.card_four_orientation)}
+                </td>
+                <td className="p-2 text-center">
+                  {el.card_five_name} –{" "}
+                  {formatOrientation(el.card_five_orientation)}
+                </td>
                 <td className="p-2">
-                  <button className="justify-center bg-red-600 px-4 py-1 rounded-full"
-                  onClick={() => deleteSpread(el.spread_id)}>
+                  <button
+                    className="justify-center bg-red-600 px-4 py-1 rounded-full"
+                    onClick={() => deleteSpread(el.spread_id)}
+                  >
                     <TrashIcon className="w-6 text-white" />
                   </button>
                 </td>
